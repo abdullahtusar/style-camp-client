@@ -1,21 +1,35 @@
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
+import DarkModeToggle from 'react-dark-mode-toggle';
 
-function App() {
+const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem('darkMode') === 'true'
+  );
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card w-3/12">
-        <button className="btn">Button</button>
-        <button className="btn btn-neutral">Neutral</button>
-        <button className="btn btn-primary">Button</button>
-        <button className="btn btn-secondary">Button</button>
-        <button className="btn btn-accent">Button</button>
-        <button className="btn btn-ghost">Button</button>
-        <button className="btn btn-link">Button</button>
-      </div>
-    </>
-  )
-}
+    <div>
+      <h1>Hello, world!</h1>
+      <DarkModeToggle
+        onChange={toggleDarkMode}
+        checked={isDarkMode}
+        size={50}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;

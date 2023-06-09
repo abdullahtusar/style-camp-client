@@ -5,20 +5,20 @@ const Footer = () => {
         <>
             <footer className='max-w-screen-2xl mx-auto px-4'>
                 <div className="footer grid md:grid-cols-4 gap-0 border-y-2">
-                    <div className='pb-4 w-full'>
+                    <div className='py-4 w-full'>
                         <div>
-                            <img width="80px" src={styleLogo} /><span className="font-extrabold text-xl md:text-2xl text-[#ee4036]">Style Camp</span>
+                            <img width="50px" className="bg-white rounded-3xl mr-1" src={styleLogo} /><span className="font-extrabold text-xl md:text-2xl text-[#ee4036]">Style Camp</span>
                             <p>Style Camp Industries Ltd.<br />Providing reliable fashion camp since 2020</p>
                         </div>
                     </div>
-                    <div className='w-full md:justify-end pt-4'>
+                    <div className='w-full md:justify-end pt-4 pb-2'>
                         <span className="footer-title">Services</span>
                         <a className="link link-hover">Branding</a>
                         <a className="link link-hover">Design</a>
                         <a className="link link-hover">Marketing</a>
                         <a className="link link-hover">Advertisement</a>
                     </div>
-                    <div className='w-full md:justify-end pt-4'>
+                    <div className='w-full md:justify-end pt-4 pb-2'>
                         <span className="footer-title">Company</span>
                         <a className="link link-hover">About us</a>
                         <a className="link link-hover">Contact</a>

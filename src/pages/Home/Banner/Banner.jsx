@@ -9,7 +9,9 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
-import slider1 from '../../../assets/Fashion_Slider1.jpg';
+import slider01 from '../../../assets/Fashion_Slider01.jpg';
+import slider02 from '../../../assets/Fashion_Slider02.jpg';
+import slider03 from '../../../assets/Fashion_Slider03.jpg';
 
 const Banner = () => {
     return (
@@ -28,10 +30,9 @@ const Banner = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide><img src={slider1} /></SwiperSlide>
-        <SwiperSlide><img src={slider1} /></SwiperSlide>
-        <SwiperSlide><img src={slider1} /></SwiperSlide>
-        <SwiperSlide><img src={slider1} /></SwiperSlide>
+        <SwiperSlide><img src={slider01} /></SwiperSlide>
+        <SwiperSlide><img src={slider02} /></SwiperSlide>
+        <SwiperSlide><img src={slider03} /></SwiperSlide>
       </Swiper>
     </>
     );

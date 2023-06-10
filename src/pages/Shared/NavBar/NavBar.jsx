@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import './NavBar.css';
 import DarkModeToggle from 'react-dark-mode-toggle';
@@ -41,7 +42,13 @@ const NavBar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case bg-opacity-10 border-0 flex gap-0 justify-center items-center p-0"><img width="50px" src={styleLogo2} /><span className="font-extrabold text-xl md:text-2xl text-[#24a9e1]">Style Camp</span></a>
+                    <motion.div
+                        initial={{ opacity: 0, x: -100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <a className="btn btn-ghost normal-case bg-opacity-10 border-0 flex gap-0 justify-center items-center p-0"><img width="50px" src={styleLogo2} /><span className="font-extrabold text-xl md:text-2xl text-[#24a9e1]">Style Camp</span></a>
+                    </motion.div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 font-semibold">
@@ -49,11 +56,17 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end px-1 md:px-0">
-                    <DarkModeToggle
-                        onChange={toggleDarkMode}
-                        checked={isDarkMode}
-                        size={50}
-                    />
+                    <motion.div
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 2 }}
+                    >
+                        <DarkModeToggle
+                            onChange={toggleDarkMode}
+                            checked={isDarkMode}
+                            size={50}
+                        />
+                    </motion.div>
                 </div>
             </div>
         </div>

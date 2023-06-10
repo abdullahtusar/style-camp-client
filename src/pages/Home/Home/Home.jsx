@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import CountdownTimer from "../../Shared/CountdownTimer/CountdownTimer";
 import Banner from "../Banner/Banner";
 import './Home.css'
+import Facilities from "../Facilities/Facilities";
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
                     </div>
                     <Banner></Banner>
                 </div>
+                <Facilities></Facilities>
             </div>
         </>
     );

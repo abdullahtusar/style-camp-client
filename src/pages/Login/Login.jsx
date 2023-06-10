@@ -1,9 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 import loginImage from '../../assets/Fashion_Slider1.jpg'
 import { FaEye } from 'react-icons/fa';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 const Login = () => {
+    const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+
     const [showPassword, setShowPassword] = useState(false);
 
     const handleTogglePassword = () => {
@@ -16,6 +24,21 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                Swal.fire({
+                    title: 'Logged in Successfully!!',
+                    showClass: {
+                      popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                      popup: 'animate__animated animate__fadeOutUp'
+                    }
+                  });
+                  navigate(from, { replace: true });
+            })
     }
     return (
         <>

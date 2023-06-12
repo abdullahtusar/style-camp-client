@@ -1,4 +1,4 @@
-import { FaBook, FaCalendarAlt, FaHome, FaSchool, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
+import { FaBook, FaBroom, FaCalendarAlt, FaHome, FaPlus, FaSchool, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
@@ -12,29 +12,24 @@ const DashboardLayout = () => {
         <>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content flex flex-col items-center justify-start mt-12">
                     {/* Page content here */}
                     <Outlet></Outlet>
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    <label htmlFor="my-drawer-2" className="btn btn-primary bg-[#24a9e1] border-0 text-white drawer-button lg:hidden">Open drawer</label>
 
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side bg-[#24a9e1]">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 h-full bg-[#24a9e1] text-base-content">
+                    <ul className="menu p-4 w-80 h-full text-base-content">
                         {/* Sidebar content here */}
                         {
                             isAdmin ? <>
-                                <li><NavLink to="/dashboard/adminhome"><FaHome></FaHome> Admin Home</NavLink></li>
-                                <li><NavLink to="/dashboard/additem"><FaUtensils></FaUtensils> Add Items</NavLink></li>
-                                <li><NavLink to="/dashboard/manageitems"><FaWallet></FaWallet> Manage Items</NavLink></li>
-                                <li><NavLink to="/dashboard/managebookings"><FaBook></FaBook> Manage Bookings</NavLink></li>
-                                <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> All Users</NavLink></li>
+                                <li><NavLink to="/dashboard/manageClasses"><FaSchool></FaSchool> Manage Classes</NavLink></li>
+                                <li><NavLink to="/dashboard/manageUsers"><FaUsers></FaUsers> Manage Users</NavLink></li>
                             </> :
                             isInstructor ? <>
-                            <li><NavLink to="/dashboard/addAClass"><FaHome></FaHome>Add A Class</NavLink></li>
-                            <li><NavLink to="/dashboard/myClass"><FaCalendarAlt></FaCalendarAlt> My Class</NavLink></li>
-                            <li><NavLink to="/dashboard/history"><FaWallet></FaWallet> isInstructor</NavLink></li>
-                            
+                            <li><NavLink to="/dashboard/addAClass"><FaPlus></FaPlus>Add A Class</NavLink></li>
+                            <li><NavLink to="/dashboard/myclass"><FaSchool></FaSchool> My Class</NavLink></li>
                             </> : 
                             <>
                             <li><NavLink to="/dashboard/userhome"><FaSchool></FaSchool> My Selected Classes</NavLink></li>

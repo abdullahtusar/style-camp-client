@@ -27,7 +27,7 @@ const NavBar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/">Instructors</Link></li>
         <li><Link to="/order/salad">Classes</Link></li>
-        <li><Link to="/order/salad">Dashboard</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/login">Login</Link></li>
     </>
     return (
@@ -47,7 +47,7 @@ const NavBar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1 }}
                     >
-                        <a className="btn btn-ghost normal-case bg-opacity-10 border-0 flex gap-0 justify-center items-center p-0"><img width="50px" src={styleLogo2} /><span className="font-extrabold text-xl md:text-2xl text-[#24a9e1]">Style Camp</span></a>
+                        <a className="btn btn-ghost normal-case bg-opacity-10 border-0 flex gap-0 justify-center items-center p-0"><img width="50px" src={styleLogo2} /><span className="font-extrabold text-md md:text-2xl text-[#24a9e1]">Style Camp</span></a>
                     </motion.div>
                 </div>
                 <div className="navbar-center hidden lg:flex">

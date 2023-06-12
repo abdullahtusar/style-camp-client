@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
           element: <AddAClass></AddAClass>  
         },
         {
-          path: 'myClass',
+          path: '',
           element: <MyClass></MyClass>  
         }
       ]

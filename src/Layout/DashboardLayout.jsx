@@ -7,7 +7,7 @@ const DashboardLayout = () => {
     //const isAdmin = true;
     //const [isAdmin] = useAdmin();
     const isAdmin = false;
-    const isInstructor = false;
+    const isInstructor = true;
     return (
         <>
             <div className="drawer lg:drawer-open">
@@ -31,8 +31,8 @@ const DashboardLayout = () => {
                                 <li><NavLink to="/dashboard/allusers"><FaUsers></FaUsers> All Users</NavLink></li>
                             </> :
                             isInstructor ? <>
-                            <li><NavLink to="/dashboard/userhome"><FaHome></FaHome> User Home</NavLink></li>
-                            <li><NavLink to="/dashboard/reservation"><FaCalendarAlt></FaCalendarAlt> Reservation</NavLink></li>
+                            <li><NavLink to="/dashboard/addAClass"><FaHome></FaHome>Add A Class</NavLink></li>
+                            <li><NavLink to="/dashboard/myClass"><FaCalendarAlt></FaCalendarAlt> My Class</NavLink></li>
                             <li><NavLink to="/dashboard/history"><FaWallet></FaWallet> isInstructor</NavLink></li>
                             
                             </> : 

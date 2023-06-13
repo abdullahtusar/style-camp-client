@@ -6,7 +6,7 @@ const DashboardLayout = () => {
     //TODO: load data from the server to have dynamic isAdmin based on the data
     //const isAdmin = true;
     //const [isAdmin] = useAdmin();
-    const isAdmin = true;
+    const isAdmin = false;
     const isInstructor = true;
     return (
         <>

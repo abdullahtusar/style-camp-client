@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
 import useClasses from '../../../../hooks/useClasses';
-import { FaEdit } from 'react-icons/fa';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const ManageClasses = () => {
@@ -12,39 +10,79 @@ const ManageClasses = () => {
 
     //const [{_id}] = classes;
     const handleApproveConfirm = id => {
-        axiosSecure.patch(`/classes/${id}`,{status: 'Approved'})
-        .then(data=>{
-            console.log(data);
-            if(data.data.modifiedCount > 0){
-                refetch();
-                //update status
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your Status is successfully Updated!',
-                    showConfirmButton: false,
-                    timer: 1000
-                  })
-            }
-        })
+        axiosSecure.patch(`/classes/${id}`, { status: 'Approved' })
+            .then(data => {
+                console.log(data);
+                if (data.data.modifiedCount > 0) {
+                    refetch();
+                    //update status
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your Status is successfully Updated!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                }
+            })
     }
+
     const handlePendingConfirm = id => {
-        axiosSecure.patch(`/classes/${id}`,{status: 'Pending'})
-        .then(data=>{
-            console.log(data);
-            if(data.data.modifiedCount > 0){
-                refetch();
-                //update status
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your Status is successfully Updated!',
-                    showConfirmButton: false,
-                    timer: 1000
-                  })
-            }
-        })
+        axiosSecure.patch(`/classes/${id}`, { status: 'Pending' })
+            .then(data => {
+                console.log(data);
+                if (data.data.modifiedCount > 0) {
+                    refetch();
+                    //update status
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your Status is successfully Updated!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                }
+            })
     }
+    const handleDeniedConfirm = id => {
+        axiosSecure.patch(`/classes/${id}`, { status: 'Denied' })
+            .then(data => {
+                console.log(data);
+                if (data.data.modifiedCount > 0) {
+                    refetch();
+                    //update status
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your Status is successfully Updated!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                }
+            })
+    }
+
+    const handleFeedback = async (id) => {
+        const { value: text } = await Swal.fire({
+            input: 'textarea',
+            inputLabel: 'Feedback',
+            inputPlaceholder: 'Type your message here...',
+            inputAttributes: {
+              'aria-label': 'Type your message here'
+            },
+            showCancelButton: true
+          })
+          
+          if (text) {
+            Swal.fire(text);
+            axiosSecure.put(`/classes/${id}`, {feedback : text})
+            .then(data => {
+                console.log(data);
+            })
+          }
+    }
+
+
     return (
         <div className='w-11/12 mx-auto'>
             <h2 className="text-3xl font-bold text-center text-[#24a9e1]">MANAGE CLASSES</h2>
@@ -69,7 +107,8 @@ const ManageClasses = () => {
                     <tbody>
                         {
                             classes.map((own_class, index) => <tr
-                                key={own_class._id}>
+                                key={own_class._id}
+                                >
                                 <td>
                                     {index + 1}
                                 </td>
@@ -102,13 +141,13 @@ const ManageClasses = () => {
                                     {own_class.status}
                                 </td>
                                 <td>
-                                        <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} onClick={()=>handleApproveConfirm(own_class._id)} className="btn btn-neutral btn-sm mr-3 bg-green-600 text-white border-0">Approved</button>
-                                        <button disabled={own_class.status === 'Pending' || own_class.status === 'Denied'} onClick={()=>handlePendingConfirm(own_class._id)} className="btn btn-neutral btn-sm mr-3 bg-yellow-500 text-white border-0">Pending</button>
-                                        <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} className="btn btn-neutral btn-sm mr-3 bg-red-600 text-white border-0">Denied</button>
-                                        <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} className="btn btn-neutral btn-sm mr-3 bg-sky-600 text-white border-0">Feedback</button>
+                                    <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} onClick={() => handleApproveConfirm(own_class._id)} className="btn btn-neutral btn-sm mr-3 bg-green-600 text-white border-0">Approved</button>
+                                    <button disabled={own_class.status === 'Pending' || own_class.status === 'Denied'} onClick={() => handlePendingConfirm(own_class._id)} className="btn btn-neutral btn-sm mr-3 bg-yellow-500 text-white border-0">Pending</button>
+                                    <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} onClick={() => handleDeniedConfirm(own_class._id)} className="btn btn-neutral btn-sm mr-3 bg-red-600 text-white border-0">Denied</button>
+                                    <button onClick={() => handleFeedback(own_class._id)} disabled={own_class.status === 'Pending'} className="btn btn-neutral btn-sm mr-3 bg-sky-600 text-white border-0">Feedback </button>
                                 </td>
-                            </tr>)
-                        }
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>

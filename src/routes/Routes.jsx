@@ -9,6 +9,7 @@ import AddAClass from "../pages/Dashboard/InstructorsDashboard/AddAClass/AddACla
 import MyClass from "../pages/Dashboard/InstructorsDashboard/MyClass/MyClass";
 import ManageClasses from "../pages/Dashboard/AdminDashboard/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/Dashboard/AdminDashboard/ManageUsers/ManageUsers";
+import Feedback from "../pages/Dashboard/AdminDashboard/Feedback/Feedback";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         {
           path: 'manageUsers',
           element: <ManageUsers></ManageUsers> 
+        },
+        {
+          path: 'feedback',
+          element: <Feedback></Feedback> 
         },
         //instructors
         {

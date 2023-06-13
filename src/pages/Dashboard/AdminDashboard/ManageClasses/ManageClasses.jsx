@@ -78,6 +78,13 @@ const ManageClasses = () => {
             axiosSecure.put(`/classes/${id}`, {feedback : text})
             .then(data => {
                 console.log(data);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your Feedback is successfully added!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             })
           }
     }

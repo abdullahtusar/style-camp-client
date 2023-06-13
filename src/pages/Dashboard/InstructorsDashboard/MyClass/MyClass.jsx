@@ -44,7 +44,7 @@ const MyClass = () => {
                                     {own_class.className}
                                 </td>
                                 <td>${own_class.price}</td>
-                                <td className="pl-12">
+                                <td className="pl-16">
                                     {own_class.enrolled_students}
                                 </td>
                                 <td>

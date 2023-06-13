@@ -1,9 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useClasses from '../../../../hooks/useClasses';
 import { FaEdit } from 'react-icons/fa';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ManageClasses = () => {
     const [classes, , refetch] = useClasses();
+    console.log(classes)
+    const [axiosSecure] = useAxiosSecure();
+
+    //const [{_id}] = classes;
+    const handleApproveConfirm = id => {
+        axiosSecure.patch(`/classes/${id}`,{status: 'Approved'})
+        .then(data=>{
+            console.log(data);
+            if(data.data.modifiedCount > 0){
+                refetch();
+                //update status
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your Status is successfully Updated!',
+                    showConfirmButton: false,
+                    timer: 1000
+                  })
+            }
+        })
+    }
+    const handlePendingConfirm = id => {
+        axiosSecure.patch(`/classes/${id}`,{status: 'Pending'})
+        .then(data=>{
+            console.log(data);
+            if(data.data.modifiedCount > 0){
+                refetch();
+                //update status
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your Status is successfully Updated!',
+                    showConfirmButton: false,
+                    timer: 1000
+                  })
+            }
+        })
+    }
     return (
         <div className='w-11/12 mx-auto'>
             <h2 className="text-3xl font-bold text-center text-[#24a9e1]">MANAGE CLASSES</h2>
@@ -61,9 +102,10 @@ const ManageClasses = () => {
                                     {own_class.status}
                                 </td>
                                 <td>
-                                        <button className="btn btn-sm mr-3 bg-green-600 text-white border-0">Approved</button>
-                                        <button className="btn btn-sm mr-3 bg-yellow-500 text-white border-0">Pending</button>
-                                        <button className="btn btn-sm mr-3 bg-red-600 text-white border-0">Denied</button>
+                                        <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} onClick={()=>handleApproveConfirm(own_class._id)} className="btn btn-neutral btn-sm mr-3 bg-green-600 text-white border-0">Approved</button>
+                                        <button disabled={own_class.status === 'Pending' || own_class.status === 'Denied'} onClick={()=>handlePendingConfirm(own_class._id)} className="btn btn-neutral btn-sm mr-3 bg-yellow-500 text-white border-0">Pending</button>
+                                        <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} className="btn btn-neutral btn-sm mr-3 bg-red-600 text-white border-0">Denied</button>
+                                        <button disabled={own_class.status === 'Approved' || own_class.status === 'Denied'} className="btn btn-neutral btn-sm mr-3 bg-sky-600 text-white border-0">Feedback</button>
                                 </td>
                             </tr>)
                         }

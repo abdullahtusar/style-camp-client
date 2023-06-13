@@ -1,19 +1,20 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from 'framer-motion';
+
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
+import "swiper/css/effect-cards";
 
 
 // import required modules
-import { FreeMode, Pagination } from "swiper";
+import { EffectCards } from "swiper";
 
 
 import fashionImage1 from '../../../assets/Fashion_Slider2.jpg'
+import fashionImage2 from '../../../assets/Fashion_Slider1.jpg'
 import fashionImage3 from '../../../assets/Fashion_Slider3.jpg'
 import fashionImage4 from '../../../assets/Fashion_Slider0.jpg'
-import {  FaArrowCircleRight } from "react-icons/fa";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const Facilities = () => {
     return (
@@ -84,17 +85,14 @@ const Facilities = () => {
                     </div>
 
                 </div>
-                <div className="">
+                <div className="w-11/12">
                     <Swiper
-                        slidesPerView={1}
-                        spaceBetween={30}
-                        freeMode={true}
-                        pagination={{
-                            clickable: true,
-                        }}
-                        modules={[FreeMode, Pagination]}
+                        effect={"cards"}
+                        grabCursor={true}
+                        modules={[EffectCards]}
                         className="mySwiper"
                     >
+                        <SwiperSlide><img src={fashionImage2} /></SwiperSlide>
                         <SwiperSlide><img src={fashionImage1} /></SwiperSlide>
                         <SwiperSlide><img src={fashionImage3} /></SwiperSlide>
                         <SwiperSlide><img src={fashionImage4} /></SwiperSlide>

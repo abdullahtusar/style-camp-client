@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import './NavBar.css';
 import DarkModeToggle from 'react-dark-mode-toggle';
 import styleLogo2 from '../../../assets/StyleCamp_logo.png'
+import useAuth from "../../../hooks/useAuth";
 const NavBar = () => {
+    const { user, logOut } = useAuth()
     const [isDarkMode, setIsDarkMode] = useState(
         localStorage.getItem('darkMode') === 'true'
     );
@@ -22,13 +24,17 @@ const NavBar = () => {
         setIsDarkMode(!isDarkMode);
     };
 
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
 
     const navOptions = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/">Instructors</Link></li>
         <li><Link to="/order/salad">Classes</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/login">Login</Link></li>
     </>
     return (
         <div className='mx-auto max-w-screen-2xl md:px-4'>
@@ -47,7 +53,7 @@ const NavBar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1 }}
                     >
-                        <a className="btn btn-ghost normal-case bg-opacity-10 border-0 flex gap-0 justify-center items-center p-0"><img width="50px" src={styleLogo2} /><span className="font-extrabold text-md md:text-2xl text-[#24a9e1]">Style Camp</span></a>
+                        <a className="btn btn-ghost normal-case bg-opacity-10 border-0 flex gap-0 justify-center items-center p-0"><img className="w-[25px] md:w-[50px]" src={styleLogo2} /><span className="font-extrabold text-md md:text-2xl text-[#24a9e1]">Style Camp</span></a>
                     </motion.div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -56,7 +62,23 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end px-1 md:px-0">
+                    {
+                        user ? <div className="flex items-center">
+                            <Link onClick={handleLogOut} className="btn btn-neutral btn-sm text-white bg-[#24a9e1] border-0 mr-3">LogOut</Link> 
+                            {
+                                user.photoURL && <div className="tooltip tooltip-bottom hidden md:block" data-tip={`${user.displayName}`}>
+                                    <img style={{ height: "50px", width: "50px" }} src={user.photoURL} className='rounded-3xl mr-3 border-2 border-gray-300' />
+                                </div>
+
+                            }
+                            </div>
+                            :
+                            <div>
+                                <Link to="/login" className="btn btn-neutral btn-sm text-white bg-[#24a9e1] border-0 mr-3">Login</Link>
+                            </div>
+                    }
                     <motion.div
+                        className="hidden md:block"
                         initial={{ opacity: 0, x: 100 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 2 }}

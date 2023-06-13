@@ -44,14 +44,15 @@ const MyClass = () => {
                                     {own_class.className}
                                 </td>
                                 <td>${own_class.price}</td>
-                                <td>
-                                    {/* <button className="btn btn-ghost btn-xs">details</button> */}
+                                <td className="pl-12">
+                                    {own_class.enrolled_students}
                                 </td>
                                 <td>
                                     {own_class.status}
                                 </td>
                                 <td>
                                     {/* <button className="btn bg-red-600 border-0"><FaTrashAlt className='text-white text-xl'></FaTrashAlt></button> */}
+                                    {own_class?.feedback}
                                 </td>
                                 <td>
                                     <button className="btn bg-orange-600 border-0"><FaEdit className='text-white text-xl'></FaEdit></button>

@@ -5,8 +5,13 @@ import './NavBar.css';
 import DarkModeToggle from 'react-dark-mode-toggle';
 import styleLogo2 from '../../../assets/StyleCamp_logo.png'
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
+
 const NavBar = () => {
-    const { user, logOut } = useAuth()
+    const { user, logOut } = useAuth();
+    const [isAdmin]  = useAdmin();
+    const [isInstructor]  = useInstructor();
     const [isDarkMode, setIsDarkMode] = useState(
         localStorage.getItem('darkMode') === 'true'
     );
@@ -34,7 +39,9 @@ const NavBar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/instructors">Instructors</Link></li>
         <li><Link to="/order/salad">Classes</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
+        {
+            user && <li><Link to={isAdmin ? '/dashboard/manageUsers' : isInstructor ? '/dashboard/myclass' : '/dashboard/selectedClasses'}>Dashboard</Link></li>
+        }
     </>
     return (
         <div className='mx-auto max-w-screen-2xl md:px-4'>

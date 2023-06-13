@@ -1,13 +1,16 @@
-import { FaBook, FaBroom, FaCalendarAlt, FaHome, FaPlus, FaSchool, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
+import { FaCalendarAlt, FaHome, FaPlus, FaSchool, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const DashboardLayout = () => {
     //const [cart] = useCart();
     //TODO: load data from the server to have dynamic isAdmin based on the data
     //const isAdmin = true;
-    //const [isAdmin] = useAdmin();
-    const isAdmin = true;
-    const isInstructor = true;
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
+    //const isAdmin = true;
+    //const isInstructor = true;
     return (
         <>
             <div className="drawer lg:drawer-open">
@@ -32,7 +35,7 @@ const DashboardLayout = () => {
                             <li><NavLink to="/dashboard/myclass"><FaSchool></FaSchool> My Class</NavLink></li>
                             </> : 
                             <>
-                            <li><NavLink to="/dashboard/userhome"><FaSchool></FaSchool> My Selected Classes</NavLink></li>
+                            <li><NavLink to="/dashboard/selectedClasses"><FaSchool></FaSchool> My Selected Classes</NavLink></li>
                             <li><NavLink><FaCalendarAlt></FaCalendarAlt> My Enrolled Classes</NavLink></li>
                             </>
                         }

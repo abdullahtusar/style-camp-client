@@ -14,12 +14,14 @@ const Payment = () => {
     const queryParams = new URLSearchParams(location.search);
     const id = queryParams.get("id");
     const price = queryParams.get("price");
+    const name = queryParams.get("name");
+    const image = queryParams.get("image");
     return (
         <div className='w-2/3 mx-auto'>
             <h2 className="text-3xl font-bold text-center text-[#24a9e1]">PAY NOW</h2>
             <h2 className='font-semibold mb-6'>Please Put Your Card Information Below:</h2>
             <Elements stripe={stripePromise}>
-                <CheckoutForm price={price} id={id}></CheckoutForm>
+                <CheckoutForm price={price} id={id} name={name} image={image}></CheckoutForm>
             </Elements>
         </div>
     );

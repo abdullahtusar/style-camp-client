@@ -4,9 +4,9 @@ import useAuth from '../../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import useSelectedClasses from '../../../../../hooks/useSelectedClasses';
-const CheckoutForm = ({price, id}) => {
-    const[selectedClasses] = useSelectedClasses();
+//import useSelectedClasses from '../../../../../hooks/useSelectedClasses';
+const CheckoutForm = ({price, id, name, image}) => {
+    //const[selectedClasses] = useSelectedClasses();
     console.log(price, id);
     const stripe = useStripe();
     const elements = useElements();
@@ -85,6 +85,8 @@ const CheckoutForm = ({price, id}) => {
                 date: new Date(),
                 // quantity: cart.length,
                 selectedClassId: id,
+                className: name,
+                classImage: image,
                 // menuItems: cart.map(item => item.menuItemId),
                 // status: 'service pending',
                 // itemNames: cart.map(item => item.name)
@@ -123,7 +125,7 @@ const CheckoutForm = ({price, id}) => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe || !clientSecret || processing} className='btn border-0 bg-[#24a9e1] btn-sm mt-4'>
+            <button type="submit" disabled={!stripe || !clientSecret || processing} className='btn btn-neutral text-white border-0 bg-[#24a9e1] btn-sm mt-4'>
                 Pay
             </button>
         </form>

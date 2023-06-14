@@ -1,4 +1,4 @@
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import useSingleUserClasses from "../../../../hooks/useSingleUserClasses";
 
 

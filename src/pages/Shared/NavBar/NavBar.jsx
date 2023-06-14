@@ -38,7 +38,7 @@ const NavBar = () => {
     const navOptions = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/instructors">Instructors</Link></li>
-        <li><Link to="/order/salad">Classes</Link></li>
+        <li><Link to="/classes">Classes</Link></li>
         {
             user && <li><Link to={isAdmin ? '/dashboard/manageUsers' : isInstructor ? '/dashboard/myclass' : '/dashboard/selectedClasses'}>Dashboard</Link></li>
         }

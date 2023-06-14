@@ -8,7 +8,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 const AddAClass = () => {
     const { user } = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure()
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         const { className, photoURL, instructorName, email, availableSeat, price } = data;
         const classData = { className, image: photoURL, instructorName, email, availableSeat: parseInt(availableSeat), price: parseFloat(price), status: "Pending", enrolled_students: 0 }

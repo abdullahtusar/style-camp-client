@@ -36,7 +36,7 @@ const DashboardLayout = () => {
                             </> : 
                             <>
                             <li><NavLink to="/dashboard/selectedClasses"><FaSchool></FaSchool> My Selected Classes</NavLink></li>
-                            <li><NavLink><FaCalendarAlt></FaCalendarAlt> My Enrolled Classes</NavLink></li>
+                            <li><NavLink to="/dashboard/enrolledClasses"><FaCalendarAlt></FaCalendarAlt> My Enrolled Classes</NavLink></li>
                             </>
                         }
 

@@ -1,15 +1,70 @@
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import useClasses from "../../../hooks/useClasses";
+import Swal from "sweetalert2";
 
 const Classes = () => {
+    const { user } = useAuth()
     const [axiosSecure] = useAxiosSecure();
-
+    const [isAdmin]  = useAdmin();
+    const [isInstructor]  = useInstructor();
+    const [, , refetch ] = useClasses();
     const { data: classes = [] } = useQuery(['classes'], async () => {
         const res = await axiosSecure.get('/classes/approved_classes')
         return res.data;
     })
     console.log(classes);
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const handleSelectClass = (_class) => {
+        console.log(_class);
+        const {_id, className, image, price} = _class;
+        if (user && user.email) {
+            const selectClass = { classId: _id, className, image, price, email: user.email };
+            fetch('http://localhost:5000/selected_classes', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(selectClass)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    refetch(); //refetch to update the number of cart item
+                    if (data.insertedId) {
+                        console.log(data)
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Class is added on the selected dashboard!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        }
+        else {
+            Swal.fire({
+                title: 'Please Login To Order The Food!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
+        }
+    }
     return (
         <>
             <Helmet>
@@ -37,7 +92,7 @@ const Classes = () => {
                                         <p><span className="font-semibold">Instructor:</span> {approved_class.instructorName}</p>
                                         <p><span className="font-semibold">Price:</span> ${approved_class.price}</p>
                                         <div className="card-actions">
-                                            <button className="btn btn-neutral btn-md text-white bg-[#24a9e1] border-0">Select  Class</button>
+                                        <button onClick={() => handleSelectClass(approved_class)} disabled={isAdmin || isInstructor} className="btn btn-neutral btn-md text-white bg-[#24a9e1] border-0">Select  Class</button>
                                         </div>
                                         <p className="bg-red-600 bg-opacity-80 text-white rounded px-2 absolute top-0 right-0">Available Seat: {approved_class.availableSeat}</p>
                                     </div>

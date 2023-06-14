@@ -12,7 +12,7 @@ const AddAClass = () => {
     const onSubmit = data => {
         const { className, photoURL, instructorName, email, availableSeat, price } = data;
         const classData = { className, image: photoURL, instructorName, email, availableSeat: parseInt(availableSeat), price: parseFloat(price), status: "Pending", enrolled_students: 0 }
-        // fetch(`http://localhost:5000/classes`, {
+        // fetch(`https://b7a12-summer-camp-server-side-abdullahtusar.vercel.app/classes`, {
         //     method: 'POST',
         //     headers:{
         //         'content-type' : 'application/json'

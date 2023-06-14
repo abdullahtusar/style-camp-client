@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
 
 const PopularInstructors = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -22,9 +21,9 @@ const PopularInstructors = () => {
                             <div className="card-body items-center text-center">
                                 <h2 className="card-title">{user.name}</h2>
                                 <p>{user.email}</p>
-                                <div className="card-actions">
+                                {/* <div className="card-actions">
                                     <Link to="/instructors"><button className="btn btn-neutral btn-md text-white bg-[#24a9e1] border-0">See More</button></Link>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>)

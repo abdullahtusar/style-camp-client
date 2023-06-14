@@ -18,7 +18,7 @@ const useSingleUserClasses = () =>{
     const {data: singleUserClasses = [], isLoading: loading, refetch} = useQuery({
         queryKey: ['classes'],
         queryFn: async() =>{
-            const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`);
+            const res = await fetch(`https://b7a12-summer-camp-server-side-abdullahtusar.vercel.app/classes?email=${user?.email}`);
             return res.json();
         }
     })

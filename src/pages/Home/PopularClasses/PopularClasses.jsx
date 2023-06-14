@@ -12,7 +12,7 @@ const PopularClasses = () => {
         <>
             <h2 className="text-6xl font-extrabold text-center text-[#24a9e1] py-6 underline">Our Popular Classes</h2>
 
-            <div className='w-full p-4 md:p-12 grid md:grid-cols-3 justify-between gap-5 md:gap-12 text-justify'>
+            <div className='w-full p-4 md:p-12 grid md:grid-cols-3 justify-center gap-5 md:gap-12 text-justify'>
                 {
                     classes.slice(0, 6).map(approved_class => <div key={approved_class._id}>
                         <div className="card w-96 bg-base-300 shadow-xl">

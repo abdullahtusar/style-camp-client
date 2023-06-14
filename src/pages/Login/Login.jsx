@@ -5,6 +5,7 @@ import { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 const Login = () => {
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -74,6 +75,7 @@ const Login = () => {
                                 </div>
                                 <div className='text-center'>
                                 <p><small>New here? <Link to="/signup" className='underline font-bold text-[#24a9e1]'>Create A New Account</Link></small></p>
+                                <SocialLogin></SocialLogin>
                             </div>
                             </form>
                         </div>

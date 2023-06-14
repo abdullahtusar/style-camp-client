@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors }, getValues  } = useForm();
@@ -110,6 +111,7 @@ const SignUp = () => {
                                 </div>
                                 <div className='text-center'>
                                     <p><small>Already have an account? <Link to="/login" className='underline font-bold text-[#24a9e1]'>Please login</Link></small></p>
+                                    <SocialLogin></SocialLogin>
                                 </div>
                             </form>
                         </div>

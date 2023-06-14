@@ -2,7 +2,7 @@ import useEnrolledClasses from "../../../../hooks/useEnrolledClasses";
 
 
 const EnrolledClasses = () => {
-    const [enrolledClasses, , refetch] = useEnrolledClasses();
+    const [enrolledClasses, ,] = useEnrolledClasses();
     return (
         <div className='w-11/12 mx-auto'>
             <h2 className="text-3xl font-bold text-center text-[#24a9e1]">MY ENROLLED CLASSES</h2>

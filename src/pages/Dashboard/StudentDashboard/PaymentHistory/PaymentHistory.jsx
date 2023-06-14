@@ -1,15 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useEnrolledClasses from "../../../../hooks/useEnrolledClasses";
 
 
 const PaymentHistory = () => {
-    const [axiosSecure] = useAxiosSecure();
-
-    const { data: payments = [] } = useQuery(['users'], async () => {
-        const res = await axiosSecure.get('/payments')
-        return res.data;
-    })
-    console.log(payments)
+    const [enrolledClasses, ,] = useEnrolledClasses();
     return (
         <div className='w-11/12 mx-auto'>
             <h2 className="text-3xl font-bold text-center text-[#24a9e1]">MY PAYMENTS HISTORY</h2>
@@ -30,7 +23,7 @@ const PaymentHistory = () => {
                     </thead>
                     <tbody>
                         {
-                            payments.map((own_class, index) => <tr
+                            enrolledClasses.map((own_class, index) => <tr
                                 key={own_class._id}>
                                 <td>
                                     {index + 1}

@@ -3,7 +3,7 @@ import useSingleUserClasses from "../../../../hooks/useSingleUserClasses";
 
 
 const MyClass = () => {
-    const [singleUserClasses, ,refetch] = useSingleUserClasses();
+    const [singleUserClasses, , ] = useSingleUserClasses();
     return (
         <div className='w-11/12 mx-auto'>
             <h2 className="text-3xl font-bold text-center text-[#24a9e1]">MY CLASSES</h2>

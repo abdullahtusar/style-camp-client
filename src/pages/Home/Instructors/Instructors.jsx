@@ -28,7 +28,7 @@ const Instructors = () => {
                     <div className='w-full p-4 md:p-12 grid md:grid-cols-3 gap-5 justify-center text-justify'>
                         {
                             users.map(user => <div key={user._id}>
-                                <div className="card w-96 bg-base-100 shadow-xl">
+                                <div className="card w-96 bg-base-300 shadow-xl">
                                     <figure className="px-10 pt-10">
                                         <img src={user.image} alt="Shoes" className="w-[100px] h-[100px] rounded-full" />
                                     </figure>

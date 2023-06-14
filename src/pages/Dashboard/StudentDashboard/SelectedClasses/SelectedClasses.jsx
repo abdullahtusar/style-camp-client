@@ -1,6 +1,5 @@
-import { FaCross, FaEdit, FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import useSelectedClasses from "../../../../hooks/useSelectedClasses";
-
 
 const SelectedClasses = () => {
     const [selectedClasses] = useSelectedClasses()
@@ -42,7 +41,9 @@ const SelectedClasses = () => {
                                 </td>
                                 <td>${own_class.price}</td>
                                 <td>
-                                    <button className="btn btn-sm btn-neutral bg-green-600 border-0  mr-5 text-white">Pay</button>
+                                    <Link to={`/dashboard/payment?id=${own_class._id}&price=${own_class.price}`}>
+                                        <button className="btn btn-sm btn-neutral bg-green-600 border-0  mr-5 text-white">Pay</button>
+                                    </Link>
                                     <button className="btn btn-sm btn-neutral bg-red-600 border-0 text-white">Remove</button>
                                 </td>
                             </tr>)

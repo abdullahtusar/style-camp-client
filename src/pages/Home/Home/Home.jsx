@@ -3,6 +3,8 @@ import CountdownTimer from "../../Shared/CountdownTimer/CountdownTimer";
 import Banner from "../Banner/Banner";
 import './Home.css'
 import Facilities from "../Facilities/Facilities";
+import PopularClasses from "../PopularClasses/PopularClasses";
+import PopularInstructors from "../PopularInstructors/PopularInstructors";
 
 
 const Home = () => {
@@ -21,6 +23,8 @@ const Home = () => {
                     </div>
                     <Banner></Banner>
                 </div>
+                <PopularClasses></PopularClasses>
+                <PopularInstructors></PopularInstructors>
                 <Facilities></Facilities>
             </div>
         </>
